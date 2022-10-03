@@ -11,34 +11,24 @@ class PokemonCRUD:
         pokemon['id'] = index
         index += 1
         db_data.append(pokemon)
-        return {'code': 201, 'message': 'Pokemon created: {}'.format(pokemon)}
+        return pokemon['id']
 
     def getAll(self):
-        return {'code': 200, 'pokemons': db_data}
+        return db_data
 
     def getOne(self, id):
         pokemon = search(id)
-        if pokemon:
-            return {'code': 200, 'pokemon': pokemon}
-        else:
-            return {'code': 404, 'message': 'Pokemon not found'}
+        return pokemon
 
     def update(self, id, data):
         pokemon = search(id)
-        if pokemon:
-            pokemon.update(data)
-            return 'Pokemon updated: {}'.format(pokemon)
-        else:
-            return {'code': 404, 'message': 'Pokemon not found'}
+        pokemon.update(data)
+        return pokemon
 
     def delete(self, id):
         pokemon = search(id)
-        if pokemon:
-            db_data.remove(pokemon)
-            return {'code': 200, 'message': 'Pokemon deleted: {}'.format(pokemon)}
-        else:
-            return {'code': 404, 'message': 'Pokemon not found'}
-
+        db_data.remove(pokemon)
+        return pokemon['id']
 
 # search pokemon by id
 def search(id):

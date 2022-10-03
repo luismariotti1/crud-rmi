@@ -38,10 +38,12 @@ while True:
         print(f'Pokemon created with id: {id}')
     elif op == OperationOptions.FIND_ALL.value:
         pokemons = poke.getAll()
+        print()
         print(pokemons)
     elif op == OperationOptions.FIND_ONE.value:
         id = int(input('Pokemon id: '))
         pokemon = poke.getOne(id)
+        print()
         print(pokemon)
     elif op == OperationOptions.UPDATE.value:
         id = int(input('Pokemon id: '))
@@ -49,10 +51,14 @@ while True:
         type = input('Pokemon type: ')
         hp = int(input('Pokemon hp: '))
         attack = float(input('Pokemon attack: '))
-        poke.update(id, {"name": name})
+        pokemon = poke.update(id, {"name": name, "type": type, "hp": hp, "attack": attack})
+        print()
+        print(pokemon)
     elif op == OperationOptions.DELETE.value:
         id = int(input('Pokemon id: '))
-        poke.delete(id)
+        id = poke.delete(id)
+        print()
+        print(f'Pokemon deleted with id: {id}')
     elif op == OperationOptions.EXIT.value:
         print('Exit')
         break

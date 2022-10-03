@@ -22,13 +22,15 @@ class PokemonCRUD:
 
     def update(self, id, data):
         pokemon = search(id)
-        pokemon.update(data)
+        for key, value in data.items():
+            pokemon[key] = value
         return pokemon
 
     def delete(self, id):
         pokemon = search(id)
         db_data.remove(pokemon)
         return pokemon['id']
+
 
 # search pokemon by id
 def search(id):
